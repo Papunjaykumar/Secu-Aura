@@ -11,4 +11,15 @@ public class MainController {
 		
 		return "index";
 	}
+	@RequestMapping("/registration")
+	public String showRegistrationPage() {
+		
+		return "registration";
+	}
+	
+	@RequestMapping("/login")
+	public String showLoginPage() {
+		
+		return "login";
+	}
 }
