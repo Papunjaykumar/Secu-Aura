@@ -8,7 +8,15 @@
 <meta charset="UTF-8">
 <%@include file="./base.jsp"%>
 <link rel="stylesheet" href="<c:url value="/resources/css/mycss.css"/>">
-
+<style>
+	body{
+		background-color:black!important;
+	}
+	input{
+		border-bottom: 1px solid!important;
+	}
+</style>
+<script src="<c:url value="/resources/js/myJs.js"/>"></script>
 
 </head>
 <body>
@@ -45,7 +53,7 @@
 
 				</div>
 				<div class="card-body">
-					<form>
+					<form id="reg-form" action="registerHandler" method="post" enctype="multipart/form-data">
 						<!-- 1st row -->
 						<div class="form-row">
 
@@ -112,8 +120,8 @@
 							<div class="input-group col-md-6">
 								<div class="custom-file">
 									<input type="file" class="custom-file-input"
-										id="certificate" aria-describedby="certificate">
-									<label class="custom-file-label" for="certificate">Registration Certificate
+										id="certificate" name="certificate" aria-describedby="certificate">
+									<label class="custom-file-label" for="certificate" >Registration Certificate
 										Upload</label>
 								</div>
 							</div>
@@ -124,13 +132,13 @@
 						<div class="form-row">
 
 							<div class="form-group col-md-6">
-								<input type="text" class="form-control" id="hospitalregdate"
+								<input type="date" class="form-control" id="hospitalregdate"
 									name="hospitalregdate"
 									placeholder="Hospital Registration Date(dd/mm/yyyy)">
 							</div>
 							<div class="form-group col-md-6">
-								<input type="password" class="form-control" id="password"
-									name="password" placeholder="Create Password">
+								<input  id="pass" type="password" class="form-control" id="password"
+									name="password" placeholder="Create Password" required>
 							</div>
 
 						</div>
@@ -144,15 +152,18 @@
 									placeholder="Number Of Ambulance Avaiable">
 							</div>
 							<div class="form-group col-md-6">
-								<input type="password" class="form-control" id="cnfpassword"
-									name="cnfpassword" placeholder="Confirm Password">
+								<input id="cnf_pass"type="password" class="form-control" id="cnfpassword"
+									name="cnfpassword" placeholder="Confirm Password" onkeyup="validate_password()" required>
+									<span id="wrong_pass_alert"></span>
 							</div>
 
 						</div>
 						<br>
-
+						<div id="loader" class="container text-center" hidden=true>
+							<p><i class="fas fa-refresh fa-3x fa-spin"></i></p>
+						</div>
 						<div class="conatiner text-center">
-							<button class="btn btn-outline-secondary btn-lg">Sign Up</button>
+							<button id="submit-button" class="btn btn-outline-secondary btn-lg">Sign Up</button>
 						</div>
 
 

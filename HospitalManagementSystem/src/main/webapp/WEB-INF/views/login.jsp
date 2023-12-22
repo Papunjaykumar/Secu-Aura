@@ -7,8 +7,16 @@
 
 <meta charset="UTF-8">
 <%@include file="./base.jsp"%>
-<link rel="stylesheet" href="<c:url value="/resources/css/mycss.css"/>">
-
+<link rel="stylesheet" href="<c:url value="/resources/css/mycss.css"/>"/>
+<style>
+	body{
+		background-color:black!important;
+	}
+	input{
+		border-bottom: 1px solid!important;
+	}
+</style>
+<script src="<c:url value="/resources/js/myJs.js"/>"></script>
 
 </head>
 <body>
@@ -44,7 +52,7 @@
 							<h3 class="text-center">Welcome to Sicu-aura</h3>
 							<p class="text-center" style="color:grey">Your one step safety solutions using innovative technology</p>
 						</div>
-						<form action="">
+						<form action="loginhanlde" method="post">
 							<div class="card-body">
 								<div class="form-group">
 									<input type="text" class="form-control" id="hospitalname"
