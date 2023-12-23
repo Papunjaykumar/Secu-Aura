@@ -3,6 +3,8 @@ package com.secuaura.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -105,6 +107,36 @@ public class MainController {
 		session.removeAttribute("hospital");
 		
 		return "redirect:/login";
+	}
+	@RequestMapping("/search")
+	public String searchByName(@RequestParam("search")String name,Model model) {
+		List<Hospital> allHospital = this.hospitalService.getAllHospital();
+		List<Hospital> ans=new ArrayList<>();
+		for(Hospital hp:allHospital) {
+			if(hp.getHospitalname().equals(name)) {
+				ans.add(hp);
+			}
+		}
+		model.addAttribute("hospitals",ans);
+		
+		return "detail_page";
+		
+	}
+	
+	@RequestMapping("/sortbyname")
+	public String sortDtlByName(Model model) {
+		List<Hospital> allHospital = this.hospitalService.getAllHospital();
+		Collections.sort(allHospital, (o1, o2) -> (o1.getHospitalname().compareTo(o2.getHospitalname())));
+		model.addAttribute("hospitals", allHospital);
+		return "detail_page";
+	}
+	
+	@RequestMapping("/sortbydate")
+	public String sortDtlByDate(Model model) {
+		List<Hospital> allHospital = this.hospitalService.getAllHospital();
+		Collections.sort(allHospital, (o1, o2) -> (o1.getHospitalregdate().compareTo(o2.getHospitalregdate())));
+		model.addAttribute("hospitals", allHospital);
+		return "detail_page";
 	}
 	
 }
