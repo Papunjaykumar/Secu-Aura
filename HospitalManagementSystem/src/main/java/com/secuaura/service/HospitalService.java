@@ -28,5 +28,10 @@ public class HospitalService {
 		return this.hospitalDao.getAllHospital();
 	}
 	
+	public Hospital getHospitalByHnameAndEmailAndPasword(String hname,String emailid,String password) {
+		
+		return this.hospitalDao.getHospitalByEmailAndPassword(hname, emailid, password);
+	}
+	
 
 }

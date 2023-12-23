@@ -1,3 +1,16 @@
+
+<!-- validating session -->
+<%@page import="com.secuaura.entities.Hospital"%>
+<%
+	Hospital hospital=(Hospital)session.getAttribute("hospital");
+	if(hospital==null){
+		response.sendRedirect(session.getServletContext().getContextPath()+"/login");
+	}
+
+
+%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,10 +41,15 @@
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-right">
+				
+				<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath }/logout"><i
+						class="fa fa-user-minus "></i> Logout</a></li>
+			</ul>
+   <!--  <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
   </div>
 </nav>
 

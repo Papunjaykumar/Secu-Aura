@@ -43,5 +43,19 @@ public class HospitalDaoImpl implements HospitalDao{
 		return this.hibernateTemplate.loadAll(Hospital.class);
 	}
 
+	@Override
+	public Hospital getHospitalByEmailAndPassword(String hname, String emailid, String password) {
+		// TODO Auto-generated method stub
+		List<Hospital> hospitals = this.hibernateTemplate.loadAll(Hospital.class);
+		for(Hospital h:hospitals) {
+			if(h.getEmailid().equals(emailid) && h.getHospitalname().equals(hname) && h.getPassword().equals(password)) {
+				return h;
+			}
+		}
+		  return null;
+	}
+
+	
+
 	
 }

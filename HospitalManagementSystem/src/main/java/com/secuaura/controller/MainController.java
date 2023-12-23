@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,8 +79,10 @@ public class MainController {
 	
 //	login hanlde
 	@RequestMapping(value="/loginhanlde",method=RequestMethod.POST)
-	public String loginHanldle(@RequestParam("hospitalname")String hospitalname,@RequestParam("emailid")String emailid,@RequestParam("password")String password) {
+	public String loginHanldle(@RequestParam("hospitalname")String hospitalname,@RequestParam("emailid")String emailid,@RequestParam("password")String password,HttpSession session) {
 		if(this.hospitalService.getHospitalByNameAndEmail(hospitalname, emailid, password)) {
+			Hospital hospital = this.hospitalService.getHospitalByHnameAndEmailAndPasword(hospitalname, emailid, password);
+			session.setAttribute("hospital", hospital);
 			return "capture_image";
 		}
 		
@@ -93,6 +96,15 @@ public class MainController {
 		List<Hospital> allHospital = this.hospitalService.getAllHospital();
 		model.addAttribute("hospitals", allHospital);
 		return "detail_page";
+	}
+	
+//	logout end point
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session=request.getSession(false);
+		session.removeAttribute("hospital");
+		
+		return "redirect:/login";
 	}
 	
 }
