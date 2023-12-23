@@ -3,6 +3,7 @@ package com.secuaura.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,12 +78,21 @@ public class MainController {
 	
 //	login hanlde
 	@RequestMapping(value="/loginhanlde",method=RequestMethod.POST)
-	public @ResponseBody String loginHanldle(@RequestParam("hospitalname")String hospitalname,@RequestParam("emailid")String emailid,@RequestParam("password")String password) {
+	public String loginHanldle(@RequestParam("hospitalname")String hospitalname,@RequestParam("emailid")String emailid,@RequestParam("password")String password) {
 		if(this.hospitalService.getHospitalByNameAndEmail(hospitalname, emailid, password)) {
-			return "done";
+			return "capture_image";
 		}
 		
-		return "not done";
+		return "login";
+	}
+	
+//	detail page after login
+	@RequestMapping("/show_detail")
+	public String detailShow(Model model) {
+		
+		List<Hospital> allHospital = this.hospitalService.getAllHospital();
+		model.addAttribute("hospitals", allHospital);
+		return "detail_page";
 	}
 	
 }

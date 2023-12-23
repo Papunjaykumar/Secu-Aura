@@ -37,5 +37,11 @@ public class HospitalDaoImpl implements HospitalDao{
 		  return false;
 	}
 
+	@Override
+	public List<Hospital> getAllHospital() {
+		// TODO Auto-generated method stub
+		return this.hibernateTemplate.loadAll(Hospital.class);
+	}
+
 	
 }

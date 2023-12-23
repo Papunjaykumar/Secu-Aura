@@ -1,7 +1,3 @@
-body {
-	background-color: black !important;
-}
-
-input {
-	border-bottom: 1px solid !important;
+.bg-mybackground{
+	background-color:#0f0015 !important;
 }
