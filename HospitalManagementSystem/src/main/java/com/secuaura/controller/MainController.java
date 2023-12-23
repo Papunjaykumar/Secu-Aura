@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.secuaura.entities.Hospital;
 import com.secuaura.service.HospitalService;
@@ -30,9 +31,10 @@ public class MainController {
 	private HospitalService hospitalService;
 	
 	@RequestMapping("/")
-	public String index() {
-		
-		return "index";
+	public RedirectView index() {
+			RedirectView redirectView = new RedirectView();
+			redirectView.setUrl("registration");
+		return redirectView;
 	}
 	@RequestMapping("/registration")
 	public String showRegistrationPage() {
