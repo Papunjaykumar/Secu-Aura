@@ -31,10 +31,10 @@ public class MainController {
 	private HospitalService hospitalService;
 	
 	@RequestMapping("/")
-	public String index() {
-			// RedirectView redirectView = new RedirectView();
-			// redirectView.setUrl("registration");
-		return "index";
+	public RedirectView index() {
+			RedirectView redirectView = new RedirectView();
+			redirectView.setUrl("registration");
+		return redirectView;
 	}
 	@RequestMapping("/registration")
 	public String showRegistrationPage() {
